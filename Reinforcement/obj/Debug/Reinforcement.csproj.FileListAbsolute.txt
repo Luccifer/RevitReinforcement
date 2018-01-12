@@ -1,0 +1,6 @@
+C:\Users\Pavel Rusakov\source\repos\Reinforcement\Reinforcement\bin\Debug\Reinforcement.dll
+C:\Users\Pavel Rusakov\source\repos\Reinforcement\Reinforcement\bin\Debug\Reinforcement.pdb
+C:\Users\Pavel Rusakov\source\repos\Reinforcement\Reinforcement\obj\Debug\Reinforcement.csprojResolveAssemblyReference.cache
+C:\Users\Pavel Rusakov\source\repos\Reinforcement\Reinforcement\obj\Debug\Reinforcement.csproj.CoreCompileInputs.cache
+C:\Users\Pavel Rusakov\source\repos\Reinforcement\Reinforcement\obj\Debug\Reinforcement.dll
+C:\Users\Pavel Rusakov\source\repos\Reinforcement\Reinforcement\obj\Debug\Reinforcement.pdb

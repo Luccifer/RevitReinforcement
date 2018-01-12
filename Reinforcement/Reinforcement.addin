@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command Reinforcement</Text>
+    <Description>Some description for Reinforcement</Description>
+    <Assembly>Reinforcement.dll</Assembly>
+    <FullClassName>Reinforcement.Command</FullClassName>
+    <ClientId>d13a97fc-59e2-48e8-8f0b-8f170db68c8c</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application Reinforcement</Name>
+    <Assembly>Reinforcement.dll</Assembly>
+    <FullClassName>Reinforcement.App</FullClassName>
+    <ClientId>6afabce1-4e28-4f52-a75e-ef1d8a7cb46b</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
