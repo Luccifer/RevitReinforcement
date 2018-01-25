@@ -81,6 +81,7 @@ namespace Reinforcement
 
                 #region Area Reinforcement Implementation
                 /* Area Reinforce */
+                AreaReinforcement rein = null;
                 IList<Curve> curves = analytical.GetCurves(AnalyticalCurveType.ActiveCurves);
                 Line firstLine = (Line)(curves[0]);
                 XYZ majorDirection = 
@@ -92,28 +93,76 @@ namespace Reinforcement
                 ElementId defaultRebarBarTypeId = doc.GetDefaultElementTypeId(ElementTypeGroup.RebarBarType);
                 ElementId defaultAreaReinforcementTypeId = doc.GetDefaultElementTypeId(ElementTypeGroup.AreaReinforcementType);
                 ElementId defaultHookTypeId = ElementId.InvalidElementId;
-                
+                IList<Rebar> allRebar = null;
+
                 using (Transaction trans = new Transaction(doc))
                 {
                     trans.Start("Arming..");
-                    AreaReinforcement rein = AreaReinforcement.Create(doc, wall, curves, majorDirection, defaultAreaReinforcementTypeId, defaultRebarBarTypeId, defaultHookTypeId);
-                    //rein.AdditionalTopCoverOffset = double // any number
-                    //rein.AdditionalBottomCoverOffset = double // any number
-                    //rein.AreaReinforcementType =  // type of additional reinforcement, f.e horizontal ones
-                    //rein.DesignOption 
-                    //rein.AdditionalBottomCoverOffset = double // any number
-                    //var params = rein.GetOrderedParameters() // returns parameters in order
-                    //var subs = rein.GetSubelements()  // returns a set of elements inside
+                    rein = AreaReinforcement.Create(doc, wall, curves, majorDirection, defaultAreaReinforcementTypeId, defaultRebarBarTypeId, defaultHookTypeId);
+                    rein.AdditionalTopCoverOffset = 0; // any number <--
+                    rein.AdditionalBottomCoverOffset = 0; // any number -->
 
+                  
+                   
 
                     trans.Commit();
                 }
-                
+
+                /*|
+                TaskDialog td = new TaskDialog("spacing?");
+                td.MainInstruction = "spacing!";
+                td.CommonButtons = TaskDialogCommonButtons.Yes;
+                td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, "yes");
+                td.Show();
+
+                using (Transaction trans = new Transaction(doc))
+                {
+                    IList<Parameter> parameters = rein.GetOrderedParameters(); //14  20 26! 32!
+                    var i = 0;
+                    trans.Start("Spacing..");
+                    foreach (Parameter p in parameters)
+                    {
+
+                        Debug.Print(p.Definition.Name);
+                        Debug.Print(p.Definition.ParameterType.ToString());
+                        Debug.Print(i.ToString());
+                        Debug.Print("");
+
+                        if (i == 14)
+                        {
+                            p.SetValueString("500.0");
+                        }
+
+                        if (i == 20)
+                        {
+                            p.SetValueString("500.0");
+                        }
+
+                        if (i == 26)
+                        {
+                            p.SetValueString("500.0");
+                        }
+
+                        if (i == 32)
+                        {
+                            p.SetValueString("500.0");
+                        }
+
+                        Debug.Print(p.Definition.Name);
+                        Debug.Print(p.Definition.ParameterType.ToString());
+                        Debug.Print(i.ToString());
+                        Debug.Print("");
+                        i += 1;
+                    }
+                    trans.Commit();
+                }
+                */
+
                 #endregion
 
             }
             #endregion
-
+            
             #region StandartFiltering for Future
             /*
              * FilteredElementCollector col
@@ -134,5 +183,34 @@ namespace Reinforcement
 
             return Result.Succeeded;
         }
+
+        Rebar CreateRebar(Document document, FamilyInstance column, RebarBarType barType, RebarHookType hookType)
+        {
+            // Define the rebar geometry information - Line rebar
+            LocationPoint location = column.Location as LocationPoint;
+            XYZ origin = location.Point;
+            XYZ normal = new XYZ(1, 0, 0);
+            // create rebar 9' long
+            XYZ rebarLineEnd = new XYZ(origin.X, origin.Y, origin.Z + 9);
+            Line rebarLine = Line.CreateBound(origin, rebarLineEnd);
+
+            // Create the line rebar
+            IList<Curve> curves = new List<Curve>();
+            curves.Add(rebarLine);
+
+            Rebar rebar = Rebar.CreateFromCurves(document, RebarStyle.StirrupTie, barType, hookType, hookType,
+                                column, origin, curves, RebarHookOrientation.Right, RebarHookOrientation.Left, true, true);
+
+            if (null != rebar)
+            {
+                // set specific layout for new rebar as fixed number, with 10 bars, distribution path length of 1.5'
+                // with bars of the bar set on the same side of the rebar plane as indicated by normal
+                // and both first and last bar in the set are shown
+                rebar.SetLayoutAsFixedNumber(10, 1.5, true, true, true);
+            }
+
+            return rebar;
+        }
     }
+
 }
