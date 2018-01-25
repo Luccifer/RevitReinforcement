@@ -29,6 +29,7 @@ namespace Reinforcement
             #endregion
 
             #region Core Functionality
+            
             // Retrieve elements from database
             Reference pickedObj = sel.PickObject(ObjectType.Element, "Please select an element to copy.");
             if (pickedObj != null && pickedObj.ElementId != ElementId.InvalidElementId)
@@ -45,6 +46,7 @@ namespace Reinforcement
                 }
 
                 #region Path Reinforcement Implementation
+                /*
                 List<Curve> curves = new List<Curve>();
                 LocationCurve location = wall.Location as LocationCurve;
                 XYZ start = location.Curve.GetEndPoint(0);
@@ -60,13 +62,25 @@ namespace Reinforcement
 
 
                     PathReinforcement rein = PathReinforcement.Create(doc, wall, curves, true, defaultPathReinforcementTypeId, defaultRebarBarTypeId, defaultHookTypeId, defaultHookTypeId);
-
+                    rein.AdditionalOffset = 10;
+                    Console.WriteLine(rein.Parameters);
+                    Console.WriteLine();
+                    Console.WriteLine(rein.ParametersMap);
+                    Console.WriteLine();
+                    Console.WriteLine(rein.PrimaryBarOrientation);
+                    Console.WriteLine();
+                    Console.WriteLine(rein.GetOrderedParameters());
+                    Console.WriteLine();
+                    Console.WriteLine(rein.GetSubelements());
+                    Console.WriteLine();
+                    
                     trans.Commit();
                 }
+                */
                 #endregion
 
                 #region Area Reinforcement Implementation
-                /* Area Reinforce
+                /* Area Reinforce */
                 IList<Curve> curves = analytical.GetCurves(AnalyticalCurveType.ActiveCurves);
                 Line firstLine = (Line)(curves[0]);
                 XYZ majorDirection = 
@@ -83,9 +97,18 @@ namespace Reinforcement
                 {
                     trans.Start("Arming..");
                     AreaReinforcement rein = AreaReinforcement.Create(doc, wall, curves, majorDirection, defaultAreaReinforcementTypeId, defaultRebarBarTypeId, defaultHookTypeId);
+                    //rein.AdditionalTopCoverOffset = double // any number
+                    //rein.AdditionalBottomCoverOffset = double // any number
+                    //rein.AreaReinforcementType =  // type of additional reinforcement, f.e horizontal ones
+                    //rein.DesignOption 
+                    //rein.AdditionalBottomCoverOffset = double // any number
+                    //var params = rein.GetOrderedParameters() // returns parameters in order
+                    //var subs = rein.GetSubelements()  // returns a set of elements inside
+
+
                     trans.Commit();
                 }
-                */
+                
                 #endregion
 
             }
