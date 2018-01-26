@@ -108,12 +108,13 @@ namespace Reinforcement
                     trans.Commit();
                 }
 
-                /*|
+                /*
                 TaskDialog td = new TaskDialog("spacing?");
                 td.MainInstruction = "spacing!";
                 td.CommonButtons = TaskDialogCommonButtons.Yes;
                 td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, "yes");
                 td.Show();
+                */
 
                 using (Transaction trans = new Transaction(doc))
                 {
@@ -123,40 +124,41 @@ namespace Reinforcement
                     foreach (Parameter p in parameters)
                     {
 
-                        Debug.Print(p.Definition.Name);
-                        Debug.Print(p.Definition.ParameterType.ToString());
-                        Debug.Print(i.ToString());
-                        Debug.Print("");
+                        //Debug.Print(p.Definition.Name);
+                        //Debug.Print(p.Definition.ParameterType.ToString());
+                        // Debug.Print(i.ToString());
+                        //Debug.Print("");
 
                         if (i == 14)
                         {
-                            p.SetValueString("500.0");
+                            Debug.Print(p.Definition.Name + " will be 500.0");
+                            p.SetValueString("500.0"); //Интервал в основном направлении, наружная грань
                         }
 
+                        
                         if (i == 20)
                         {
-                            p.SetValueString("500.0");
+                            Debug.Print(p.Definition.Name + " will be 500.0");
+                            p.SetValueString("500.0"); //Интервал во второстепенном направлении, наружная грань
                         }
 
                         if (i == 26)
                         {
-                            p.SetValueString("500.0");
+                            Debug.Print(p.Definition.Name + " will be 500.0");
+                            p.SetValueString("500.0"); // Интервал в основном направлении, внутренняя грань
                         }
 
                         if (i == 32)
                         {
-                            p.SetValueString("500.0");
+                            Debug.Print(p.Definition.Name + " will be 500.0");
+                            p.SetValueString("500.0"); //Интервал во второстепенном направлении, внутренняя грань
                         }
-
-                        Debug.Print(p.Definition.Name);
-                        Debug.Print(p.Definition.ParameterType.ToString());
-                        Debug.Print(i.ToString());
-                        Debug.Print("");
+                        
                         i += 1;
                     }
                     trans.Commit();
                 }
-                */
+                
 
                 #endregion
 
