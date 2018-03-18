@@ -8,11 +8,22 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.Attributes;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Structure;
+using Autodesk.Revit.UI;
+using Autodesk.Revit.UI.Selection;
 #endregion
 
 namespace Reinforcement
 {
-    [Transaction(TransactionMode.Manual)]
+    [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
+    [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
+    [Autodesk.Revit.Attributes.Journaling(Autodesk.Revit.Attributes.JournalingMode.NoCommandData)]
     public class Command : IExternalCommand
     {
         public Result Execute(
@@ -35,7 +46,7 @@ namespace Reinforcement
             if (pickedObj != null && pickedObj.ElementId != ElementId.InvalidElementId)
             {
                 Element element = doc.GetElement(pickedObj.ElementId);
-                Wall wall = element as Wall;
+                Element wall = element as Element;
 
                 Debug.Print(wall.Name);
 
@@ -93,7 +104,6 @@ namespace Reinforcement
                 ElementId defaultRebarBarTypeId = doc.GetDefaultElementTypeId(ElementTypeGroup.RebarBarType);
                 ElementId defaultAreaReinforcementTypeId = doc.GetDefaultElementTypeId(ElementTypeGroup.AreaReinforcementType);
                 ElementId defaultHookTypeId = ElementId.InvalidElementId;
-                IList<Rebar> allRebar = null;
 
                 using (Transaction trans = new Transaction(doc))
                 {
@@ -101,9 +111,6 @@ namespace Reinforcement
                     rein = AreaReinforcement.Create(doc, wall, curves, majorDirection, defaultAreaReinforcementTypeId, defaultRebarBarTypeId, defaultHookTypeId);
                     rein.AdditionalTopCoverOffset = 0; // any number <--
                     rein.AdditionalBottomCoverOffset = 0; // any number -->
-
-                  
-                   
 
                     trans.Commit();
                 }

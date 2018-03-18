@@ -39,6 +39,9 @@
     <StartProgram>$(ProgramW6432)\Autodesk\Revit 2018\Revit.exe</StartProgram>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RevitAddInUtility">
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAddInUtility.dll</HintPath>
+    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(ProgramW6432)\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -48,14 +51,66 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="BeamFramReinMaker.cs" />
+    <Compile Include="BeamFramReinMakerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BeamFramReinMakerForm.designer.cs">
+      <DependentUpon>BeamFramReinMakerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BeamGeometrySupport.cs" />
+    <Compile Include="ColumnFramReinMaker.cs" />
+    <Compile Include="ColumnFramReinMakerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColumnFramReinMakerForm.designer.cs">
+      <DependentUpon>ColumnFramReinMakerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnGeometrySupport.cs" />
+    <Compile Include="ColumnReinCommand.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="FrameReinMakerFactory.cs" />
+    <Compile Include="FramReinMaker.cs" />
+    <Compile Include="GeomData.cs" />
+    <Compile Include="GeometrySupport.cs" />
+    <Compile Include="GeomUtil.cs" />
+    <Compile Include="LineTool.cs" />
+    <Compile Include="MathTools.cs" />
+    <Compile Include="NewPathReinforcementCommand.cs" />
+    <Compile Include="NewPathReinforcementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPathReinforcementForm.designer.cs">
+      <DependentUpon>NewPathReinforcementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterUtil.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="ProfileFloor.cs" />
+    <Compile Include="ProfileWall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReinforceAll.cs" />
+    <Compile Include="WarningSuppressor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reinforcement.addin" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BeamFramReinMakerForm.resx">
+      <DependentUpon>BeamFramReinMakerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColumnFramReinMakerForm.resx">
+      <DependentUpon>ColumnFramReinMakerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPathReinforcementForm.resx">
+      <DependentUpon>NewPathReinforcementForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
