@@ -79,7 +79,7 @@ namespace Reinforcement
                 }
             }
 
-            doc.Export()
+            
             return Result.Succeeded;
         }
     }

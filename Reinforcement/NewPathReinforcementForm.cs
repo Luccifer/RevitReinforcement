@@ -234,7 +234,7 @@ namespace Reinforcement
         {
             List<Point> points = m_tool.GetPoints();
 
-            if (0 == points.Count || 1 == points.Count)
+            if (0 == points.Count )
             {
                 TaskDialog.Show("Revit", "Please draw Path of Reinforcement before create!");
                 return;
