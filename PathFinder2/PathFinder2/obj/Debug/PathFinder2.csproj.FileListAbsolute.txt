@@ -1,0 +1,6 @@
+C:\Users\Павел Русаков\source\repos\PathFinder2\PathFinder2\bin\Debug\PathFinder2.dll
+C:\Users\Павел Русаков\source\repos\PathFinder2\PathFinder2\bin\Debug\PathFinder2.pdb
+C:\Users\Павел Русаков\source\repos\PathFinder2\PathFinder2\obj\Debug\PathFinder2.csprojResolveAssemblyReference.cache
+C:\Users\Павел Русаков\source\repos\PathFinder2\PathFinder2\obj\Debug\PathFinder2.csproj.CoreCompileInputs.cache
+C:\Users\Павел Русаков\source\repos\PathFinder2\PathFinder2\obj\Debug\PathFinder2.dll
+C:\Users\Павел Русаков\source\repos\PathFinder2\PathFinder2\obj\Debug\PathFinder2.pdb

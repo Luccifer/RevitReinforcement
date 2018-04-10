@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command PathFinder2</Text>
+    <Description>Some description for PathFinder2</Description>
+    <Assembly>PathFinder2.dll</Assembly>
+    <FullClassName>PathFinder2.Command</FullClassName>
+    <ClientId>56d70e1f-8ce9-43c5-8031-8cf33f9be47a</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application PathFinder2</Name>
+    <Assembly>PathFinder2.dll</Assembly>
+    <FullClassName>PathFinder2.App</FullClassName>
+    <ClientId>64721310-cad7-4423-93d3-dfe167e54702</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
